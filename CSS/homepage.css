@@ -1,8 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .bg-navbar-t {
-    background-color: transparent !important;
+    background-color: #745c3a !important;
 }
+
+.navbar-logo {
+    height: 35px;
+    width: 163px;
+    padding-left: 10px;
+    padding-top: 4px;
+}
+
 .bg-home {
     background-image: url(bg-home.png);
     background-size: cover;
@@ -16,6 +24,11 @@
     font-size: 60px;
     line-height: 0.9;
     margin-bottom: 40px;
+    padding-left: 30px !important;
+}
+
+.bg-elements-p {
+    padding-left: 30px !important;
 }
 .down-arrow{
     background-color: transparent;
@@ -24,6 +37,7 @@
     text-align: center;
     font-size: 50px;
     font-weight: bolder;
+    text-decoration: none;
 }
 
 .image-au {
@@ -34,12 +48,28 @@
     margin-right: 0 !important;
 }
 
+.button-au {
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    width: 180px;
+    height: 40px;
+}
+
+.images-bs {
+    height: 270px;
+    border-radius: 20px !important; 
+}
+
 .cost-bs{
     margin-left: 50px;
+    width: 20%;
 }
 
 .product-name-bs {
     margin-right: 50px;
+    padding-left: 15px;
+    width: 80%;
 }
 
 .product-name-c {
@@ -52,6 +82,7 @@
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     margin-right: 0 !important;
+    width: 55%;
 }
 
 .button-cc {
