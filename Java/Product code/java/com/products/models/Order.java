@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "shoppingorder")
+@Table(name = "orders")
 public class Order {
 
 	@Id

@@ -7,77 +7,75 @@ public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int productId;
-
-	private String productName;
+	private int product_id;
 	
-	private String productBrand;
+	private String product_name;
 	
-	private double productPrice;
+	private String product_model;
 	
-	private String productImgURL;
+	private double product_price;
 	
-	private String productCategory;
+	private String product_imgURL;
 	
-	public Product() {
-		super();
-	}
+	private Category category;
 
 	public Product(String product_name, String product_model, double product_price,
-			String product_imgURL, String product_category) {
-		this.productName = product_name;
-		this.productBrand = product_model;
-		this.productPrice = product_price;
-		this.productImgURL = product_imgURL;
-		this.productCategory = product_category;
+			String product_imgURL) {
+		this.product_name = product_name;
+		this.product_model = product_model;
+		this.product_price = product_price;
+		this.product_imgURL = product_imgURL;
+		this.category = category;
 	}
 
 	public int getProduct_id() {
-		return productId;
+		return product_id;
 	}
 
 	public void setProduct_id(int product_id) {
-		this.productId = product_id;
+		this.product_id = product_id;
 	}
 
 	public String getProduct_name() {
-		return productName;
+		return product_name;
 	}
 
 	public void setProduct_name(String product_name) {
-		this.productName = product_name;
+		this.product_name = product_name;
 	}
 
 	public String getProduct_model() {
-		return productBrand;
+		return product_model;
 	}
 
 	public void setProduct_model(String product_model) {
-		this.productBrand = product_model;
+		this.product_model = product_model;
 	}
 
 	public double getProduct_price() {
-		return productPrice;
+		return product_price;
 	}
 
 	public void setProduct_price(double product_price) {
-		this.productPrice = product_price;
+		this.product_price = product_price;
 	}
 
 	public String getProduct_imgURL() {
-		return productImgURL;
+		return product_imgURL;
 	}
 
 	public void setProduct_imgURL(String product_imgURL) {
-		this.productImgURL = product_imgURL;
+		this.product_imgURL = product_imgURL;
 	}
 
-	public String getCategory() {
-		return productCategory;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCategory(String category) {
-		this.productCategory = category;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
+	
+	
 	
 }
