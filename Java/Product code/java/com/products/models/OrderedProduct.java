@@ -14,11 +14,6 @@ public class OrderedProduct {
 	@Column
 	private int quantity;
 
-	public OrderedProduct() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public OrderedProduct(Order order, Product product, int quantity) {
 		pk = new OrderedProductPK();
 		pk.setOrder(order);
