@@ -1,0 +1,115 @@
+@charset "utf-8";
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
+
+.bg-navbar-cart {
+    background-color: black !important;
+}
+
+.navbar-logo {
+    height: 35px;
+    width: 163px;
+    padding-left: 10px;
+    padding-top: 4px;
+}
+
+.images-bs {
+    height: 135px;
+    width: 135px;
+    border-radius: 20px !important; 
+}
+
+.email-input-cc {
+    border: 0;
+    background-color: whitesmoke;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-right: 0 !important;
+    width: 55%;
+}
+
+.button-cc {
+    border: 0;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    width: 150px;
+}
+
+
+
+.vr-logo-fs {
+    height: 56px;
+    width: 163px;
+}
+
+.icon-fs {
+    color: black;
+    font-size: 18px;
+}
+
+.logo-styling {
+    background-color: white;
+    border-radius: 40px;
+    height: 40px;
+    width: 40px;
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-left: 15px;
+    padding-bottom: 30px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.address-fs {
+    font-size: 16px;
+    color: black;
+    font-weight: 400;
+    font-family: "Roboto";
+}
+
+.list-fs {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.list-item-fs {
+    font-size: 16px;
+    color: black;
+    font-weight: 400;
+    font-family: "Roboto";
+}
+
+.heading-fs {
+    font-family: "Roboto";
+    font-size: 18px;
+    color: black;
+    font-weight: 700;
+}
+
+.line1 {
+    background-color: black;
+}
+
+.copyright-fs {
+    color: black;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.products-cart{
+    list-style-type: none;
+    padding: 0;
+    margin: 20px;
+}
+
+.item-left-li {
+    margin-right: 170px;
+    margin-bottom: 30px;
+}
+
+.item-right-li {
+    margin-bottom: 30px;
+}
