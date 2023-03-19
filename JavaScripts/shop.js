@@ -99,7 +99,7 @@ let update = (id) => {
 };
 
 /**
- * ! To calculate total amount of selected Items
+ * ! To calculate total amount of selected Items 
  */
 
 let calculation = () => {
