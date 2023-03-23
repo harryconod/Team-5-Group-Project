@@ -8,6 +8,9 @@
 	})
 	form.classList.add('active');
 }*/
+
+const btnRegister = document.querySelector('#btnRegister');
+
 function switchForm(className,e){
     e.preventDefault();
     const allForm = document.querySelectorAll('form');
@@ -105,3 +108,28 @@ const registerConfirmPassword = document.querySelector('form.register #confirm-p
 registerPassword.addEventListener('input', function () {
 	registerConfirmPassword.pattern = `${this.value}`;
 })
+
+const savelead = async() => {
+    let customerName = document.getElementById("registername").value;
+    let customerEmail = document.getElementById("registeremail").value;
+    let customerpassword = document.getElementById("password").value;
+
+    let responseRegister = await fetch('http://localhost:8080/lead/getLeads');
+    console.log(responseRegister);
+
+    let responseRegister2 = await fetch('http://localhost:8080/lead/save', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: customerName,
+            email: customerEmail,
+            password: customerpassword
+        })
+    })
+    console.log(responseRegister2);
+}
+
+btnRegister.addEventListener('click', savelead);
