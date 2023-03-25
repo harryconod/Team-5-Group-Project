@@ -1,35 +1,42 @@
-function search() {
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('shop');
+let basket1 = JSON.parse(localStorage.getItem("data")) || [];
+searchInput.addEventListener('input', (event) => {
+  const query = event.target.value.toLowerCase();
+  const apiUrl = `http://localhost:3000/products?q=${query}`;
 
-    let input = document.getElementById('searchbar').value;
-    input = input.toLowerCase();
-    let s=document.querySelector('#shop')
-    
-    s.innerHTML = "";
-   
-    for (i = 0; i < data.length; i++) {
-      let obj = data[i];
-      console.log(obj);
-      if (obj.name.toLowerCase().includes(input)) {
-        const elem = document.createElement("div");
-        elem.innerHTML = `<div id=product-id-${obj.id} class="item">
-        <img width="220" src=${obj.img} alt="">
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      searchResults.innerHTML = '';
+      console.log(data);
+      
+      data.forEach(product => {
+        let search = basket1.find((y) => y.id === product.id) || [];
+        let stockMessage = product.stock === 0 ? "Out of stock" : `In stock: ${product.stock} `;
+        const productHtml = `
+        <div id=product-id-${product.id} class="item">
+        <img width="220" src=${product.img} alt="">
         <div class="details">
-          <h3>${obj.name}</h3>
-          <p>${obj.desc}</p>
+          <h3>${product.name}</h3>
+          <p>${product.desc}</p>
+          <h6>${product.category}</h6>
+          <h4>${stockMessage}</h4>
           <div class="price-quantity">
-            <h2>$ ${obj.price} </h2>
+            <h2>$ ${product.price} </h2>
             <div class="buttons">
-              <i onclick="decrement(${obj.id})" class="bi bi-dash-lg"></i>
-              <div id=${obj.id} class="quantity">
-            
+              <i onclick="decrement(${product.id})" class="bi bi-dash-lg"></i>
+              <div id=${product.id} class="quantity">
+              ${search.item === undefined ? 0 : search.item}
         </div>
-              <i onclick="increment(${obj.id})" class="bi bi-plus-lg"></i>
+              <i onclick="increment(${product.id})" class="bi bi-plus-lg"></i>
             </div>
           </div>
         </div>
-    </div>`
-        console.log(elem);
-        s.appendChild(elem)
-      }
-    }
-  }
+    </div>
+        `;
+
+        searchResults.insertAdjacentHTML('beforeend', productHtml);
+      });
+    });
+});
