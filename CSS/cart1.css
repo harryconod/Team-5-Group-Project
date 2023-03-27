@@ -118,7 +118,22 @@ border-radius: 100rem;
   border-radius: 10px;
 }
 
+.search-container {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+}
 
+#search-input {
+  width: 70%;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  
+  margin-bottom: 10px;
+}
 /**
 * ! Shop items styles are here
 **/
@@ -271,4 +286,8 @@ border-radius: 100rem;
   color: white;
   border-radius: 4px;
   padding: 3px 6px;
+}
+/*filter by category*/
+.filter{
+  list-style: none;
 }
