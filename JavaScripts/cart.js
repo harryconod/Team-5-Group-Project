@@ -27,50 +27,56 @@ calculation();
  */
 
 let generateCartItems = () => {
-  if (basket.length !== 0) {
-    return (ShoppingCart.innerHTML = basket
-      .map((x) => {
-        let { id, item } = x;
-        let search = shopItemsData.find((x) => x.id === id) || [];
-        let { img, price, name } = search;
-        return `
-      <div class="cart-item">
-        <img width="100" src=${img} alt="" />
-
-        <div class="details">
-        
-          <div class="title-price-x">
-            <h4 class="title-price">
-              <p>${name}</p>
-              <p class="cart-item-price">$ ${price}</p>
-            </h4>
-            <i onclick="removeItem(${id})" class="bi bi-x-lg"></i>
-          </div>
-
-          <div class="cart-buttons">
-            <div class="buttons">
-              <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
-              <div id=${id} class="quantity">${item}</div>
-              <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
+  fetch('http://localhost:3000/products')
+  .then(response => response.json())
+  .then(data => {
+    if (basket.length !== 0) {
+      return (ShoppingCart.innerHTML = basket
+        .map((x) => {
+          let { id, item } = x;
+          let search = data.find((x) => x.id === id) || [];
+          console.log(search);
+          let { img, price, name } = search;
+          return `
+        <div class="cart-item">
+          <img class="img-fluid1" src=${img} alt="" />
+  
+          <div class="details">
+          
+            <div class="title-price-x">
+              <h4 class="title-price">
+                <p>${name}</p>
+                <p class="cart-item-price">$ ${price}</p>
+              </h4>
+              <i onclick="removeItem(${id})" class="bi bi-x-lg"></i>
             </div>
+  
+            <div class="cart-buttons">
+              <div class="buttons">
+                <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
+                <div id=${id} class="quantity">${item}</div>
+                <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
+              </div>
+            </div>
+  
+            <h3>$ ${item * price}</h3>
+          
           </div>
-
-          <h3>$ ${item * price}</h3>
-        
         </div>
-      </div>
+        `;
+        })
+        .join(""));
+    } else {
+      ShoppingCart.innerHTML = "";
+      label.innerHTML = `
+      <h2>Cart is Empty</h2>
+      <a href="newindex.html">
+        <button class="HomeBtn">Continue Shopping</button>
+      </a>
       `;
-      })
-      .join(""));
-  } else {
-    ShoppingCart.innerHTML = "";
-    label.innerHTML = `
-    <h2>Cart is Empty</h2>
-    <a href="newindex.html">
-      <button class="HomeBtn">Back to Home</button>
-    </a>
-    `;
-  }
+    }
+  });
+ 
 };
 
 generateCartItems();
@@ -91,7 +97,7 @@ let increment = (id) => {
   } else {
     search.item += 1;
   }
-
+  console.log(generateCartItems());
   generateCartItems();
   update(selectedItem.id);
   localStorage.setItem("data", JSON.stringify(basket));
@@ -149,21 +155,26 @@ let removeItem = (id) => {
  */
 
 let TotalAmount = () => {
-  if (basket.length !== 0) {
-    let amount = basket
-      .map((x) => {
-        let { id, item } = x;
-        let filterData = shopItemsData.find((x) => x.id === id);
-        return filterData.price * item;
-      })
-      .reduce((x, y) => x + y, 0);
-
-    return (label.innerHTML = `
-    <h2>Total Bill : $ ${amount}</h2>
-    <button class="checkout">Checkout</button>
-    <button onclick="clearCart()" class="removeAll">Clear Cart</button>
-    `);
-  } else return;
+  fetch('http://localhost:3000/products')
+  .then(response => response.json())
+  .then(data => {
+    if (basket.length !== 0) {
+      let amount = basket
+        .map((x) => {
+          let { id, item } = x;
+          let filterData = data.find((x) => x.id === id);
+          return filterData.price * item;
+        })
+        .reduce((x, y) => x + y, 0);
+  
+      return (label.innerHTML = `
+      <h2>Total Bill : $ ${amount}</h2>
+      <button onclick="checkOut()"class="checkout">Checkout</button>
+      <button onclick="clearCart()" class="removeAll">Clear Cart</button>
+      `);
+    } else return;
+  });
+ 
 };
 
 TotalAmount();
@@ -173,8 +184,99 @@ TotalAmount();
  */
 
 let clearCart = () => {
+  
   basket = [];
   generateCartItems();
   calculation();
+  
   localStorage.setItem("data", JSON.stringify(basket));
 };
+
+let cart = [
+  { name: "Item 1", quantity: 2, price: 10 },
+  { name: "Item 2", quantity: 1, price: 5 },
+  { name: "Item 3", quantity: 3, price: 18 }
+];
+
+let checkOut = () => {
+  let cartData=[] ;
+  fetch('http://localhost:3000/products')
+  .then(response => response.json())
+  .then(data => {
+    if (basket.length !== 0) {
+      return (ShoppingCart.innerHTML = basket
+        .map((x) => {
+          let { id, item } = x;
+          cartData = data.find((x) => x.id === id) || [];
+          console.log(cartData);
+          let { img, price, name } = cartData;
+          return `
+        <div class="cart-item">
+          <img class="img-fluid1" src=${img} alt="" />
+  
+          <div class="details">
+          
+            <div class="title-price-x">
+              <h4 class="title-price">
+                <p>${name}</p>
+                <p class="cart-item-price">$ ${price}</p>
+              </h4>
+              <i onclick="removeItem(${id})" class="bi bi-x-lg"></i>
+            </div>
+  
+            <div class="cart-buttons">
+              <div class="buttons">
+                <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
+                <div id=${id} class="quantity">${item}</div>
+                <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
+              </div>
+            </div>
+  
+            <h3>$ ${item * price}</h3>
+          
+          </div>
+        </div>
+        `;
+        })
+        .join(""));
+        
+    } 
+    console.log(cartData)
+  });
+
+  // iterate over each item in the cart and create an object with its details
+/*cart.forEach(item => {
+    let itemData = {
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price
+    };
+    cartData.push(itemData);
+  });
+*/
+  // convert the array to JSON
+  let jsonData = JSON.stringify(cartData);
+ console.log(jsonData);
+    // send the JSON data to an API using fetch
+    fetch("http://localhost:3000/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: jsonData
+    })
+    .then(response => {
+      // handle response from API
+      alert("you order successful");
+      clearCart();
+      console.log(response);
+      console.log("Checkout successful");
+    })
+    .catch(error => {
+      // handle error
+      console.error("Checkout failed: ", error);
+    });
+};
+
+
+
