@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login&Registration</title>
+    <title>Login&   Registration</title>
     
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="Account.css">
-    <link rel="website icon" type="png" href="Company-logo-2.png">
+    <style>
+        .account{
+            list-style: none;
+        }
+        #cart-account-link ,a{
+            display: none;
+        }
+    </style>
 </head>
 <body>
+
+    <li class="nav-item account ">
+        <a class="nav-link text-black"  id="cart-account-link" href="Account.html"></a>
+      </li>
     <div class="container">
         <form action="#" class="login active">
             <div class="loginlogo">
-                <img src="Company-logo-1.png"alt="logo" class="logo">
+                <img src="Images/Company-logo-1.png"alt="logo" class="logo">
             </div>
             <h2 class="title">Login into your account</h2>
             <div class="form-group">
@@ -32,14 +44,14 @@
             </div>
             <span class="help-text">Atleast 8 characters</span>
             </div>
-           <button type="submit" id="btnSubmit" onclick="confirmlogin(event)" class="btn-submit">Log in</button>
+           <button type="submit" onclick="confirmlogin(event)" class="btn-submit">Log in</button>
             <a href="#" onclick="switchForm('forgetpswd',event)" >Forget password?</a>
            <p>Don't have an account? <button href="#" onclick="switchForm('register',event)" class="reg-button">Create Account</button></p>
         </form>
         <!--Register-->
         <form action="#" class="register">
             <div class="loginlogo1">
-                <img src="Company-logo-1.png"alt="logo" class="logo1">
+                <img src="Images/Company-logo-1.png"alt="logo" class="logo1">
             </div>
             <h2 class="title">Register your account</h2>
             <div class="form-group">
@@ -72,7 +84,7 @@
             </div>
             <span class="help-text">Confirm password must be same with password</span>
             </div>
-           <button type="submit" id="btnRegister" onclick="confirmreg()" class="btn-submit">Register</button>
+           <button type="submit" onclick="confirmreg()" class="btn-submit">Register</button>
            <p> Already have an account?</br> <button href="#" onclick="switchForm('login',event)" class="log-button">Login</button></p>
         </form>
         <!--Forget-->
@@ -89,6 +101,7 @@
             
         </form>
     </div>
-    <script src="Javascript/Account.js"></script>
+   
+    <script src="login&createaccount.js"></script>
 </body>
 </html>
