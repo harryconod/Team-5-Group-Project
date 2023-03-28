@@ -125,45 +125,84 @@ fetch('http://localhost:3000/products')
   /**
  * Search a product using Search bar
  */
-const searchInput = document.getElementById('search-input');
- 
-searchInput.addEventListener('input', (event) => {
-    const query = event.target.value.toLowerCase();
-    const apiUrl = `http://localhost:3000/products?q=${query}`;
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        shop.innerHTML = '';
-        //console.log(data);
-        data.forEach(product => {
-          let search = basket.find((y) => y.id === product.id) || [];
-          let stockMessage = product.stock === 0 ? "Out of stock" : `In stock: ${product.stock} `;
-          const productHtml = `
+  const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+
+// Function to fetch products based on search query
+function fetchProducts(queryvalue) {
+  console.log(queryvalue);
+  console.log(typeof queryvalue);
+  const apiUrl = `http://localhost:3000/products?q=${queryvalue}`;
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      shop.innerHTML = '';
+      // console.log(data);
+      data.forEach(product => {
+        let search = basket.find((y) => y.id === product.id) || [];
+        let stockMessage = product.stock === 0 ? "Out of stock" : `In stock: ${product.stock} `;
+        const productHtml = `
           <div id=product-id-${product.id} class="item">
-          <img width="220" src=${product.img} alt="">
-          <div class="details">
-            <h3>${product.name}</h3>
-            <p>${product.desc}</p>
-            <h6>${product.category}</h6>
-            <h4>${stockMessage}</h4>
-            <div class="price-quantity">
-              <h2>$ ${product.price} </h2>
-              <div class="buttons">
-                <i onclick="decrement(${product.id})" class="bi bi-dash-lg"></i>
-                <div id=${product.id} class="quantity">
-                ${search.item === undefined ? 0 : search.item}
-          </div>
-                <i onclick="increment(${product.id})" class="bi bi-plus-lg"></i>
+            <img width="220" src=${product.img} alt="">
+            <div class="details">
+              <h3>${product.name}</h3>
+              <p>${product.desc}</p>
+              <h6>${product.category}</h6>
+              <h4>${stockMessage}</h4>
+              <div class="price-quantity">
+                <h2>$ ${product.price} </h2>
+                <div class="buttons">
+                  <i onclick="decrement(${product.id})" class="bi bi-dash-lg"></i>
+                  <div id=${product.id} class="quantity">
+                    ${search.item === undefined ? 0 : search.item}
+                  </div>
+                  <i onclick="increment(${product.id})" class="bi bi-plus-lg"></i>
+                </div>
               </div>
             </div>
           </div>
-      </div>
-          `;
+        `;
   
-          shop.insertAdjacentHTML('beforeend', productHtml);
-        });
+        shop.insertAdjacentHTML('beforeend', productHtml);
+      });
     });
+}
+
+// Initial fetch of all products
+fetchProducts('');
+
+// Add event listener to search input field
+searchInput.addEventListener('input', () => {
+  const inputValue = searchInput.value.toUpperCase();
+ // console.log(typeof inputValue);
+ // console.log(inputValue);
+  if (inputValue === '') {
+    // If search input is empty, fetch all products
+    fetchProducts('');
+  }
 });
+
+// Add event listener to search button
+searchBtn.addEventListener('click', () => {
+  const inputValue = searchInput.value.toUpperCase();
+ // console.log(typeof inputValue);
+ // console.log(inputValue);
+  if (inputValue !== '') {
+    // If search input is not empty, fetch products based on search query
+    fetchProducts(inputValue);
+  }
+});
+
+searchInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    const inputValue = searchInput.value.toUpperCase();
+    if (inputValue !== '') {
+      // If search input is not empty, fetch products based on search query
+      fetchProducts(inputValue);
+    }
+  }
+});
+
 
 
 
