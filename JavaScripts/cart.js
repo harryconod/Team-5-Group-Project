@@ -168,7 +168,7 @@ let TotalAmount = () => {
   
       return (label.innerHTML = `
       <h2>Total Bill : $ ${amount}</h2>
-      <button onclick="checkOut()"class="checkout">Checkout</button>
+      <button onclick="checkOut()" id="checkout-button" class="checkout">Checkout</button>
       <button onclick="clearCart()" class="removeAll">Clear Cart</button>
       `);
     } else return;
@@ -191,83 +191,60 @@ let clearCart = () => {
   localStorage.setItem("data", JSON.stringify(basket));
 };
 
-
-// define the checkout function
 const checkOut = () => {
-  // declare an empty array to store cart data
-  const loggedIn = true; // replace with your login check logic
-  
+  const loggedIn = true;
   if (localStorage.getItem('username')) {
-    // User is logged in, redirect to checkout page
-    //window.location.href = 'newcart.html';
-    let cartData = [];
-  
-  // fetch product data from API
-  fetch('http://localhost:3000/products')
-    .then(response => response.json())
-    .then(data => {
-      // check if there are any products in the cart
-      if (basket.length !== 0) {
-        // update the shopping cart element with product data
-        ShoppingCart.innerHTML = basket.map((x) => {
-          // get the product data for the current item in the cart
-          let { id, item } = x;
-          let search = data.find((x) => x.id === id) || [];
-          let { img, price, name , category} = search;
-          
-          // create a new object with the necessary product data
-          let productData ={
-            productid: id,
-            quantity: item,
-            productname: name,
-            price: price,
-            image: img,
-            category: category
-          };
-          
-          // add the product data to the cartData array
-          cartData.push(productData);
-          
-          // return the HTML for the current item in the cart
-      
-        }).join('');
-        
-        // convert cartData to JSON
-        let jsonData = JSON.stringify(cartData);
-        
-        // send cart data to API
-        fetch("http://localhost:3000/cart", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: jsonData
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.error("Failed to send cart data: ", error);
-        });
-        
-      } else {
-        // if there are no products in the cart, show an error message
-        ShoppingCart.innerHTML = '<p>Your cart is empty!</p>';
-      }
-    })
-    .catch(error => {
-      console.error("Failed to fetch product data: ", error);
+    const checkoutForm = `
+      <form id="checkout-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="phoneno">Phone Number:</label>
+        <input type="number" id="number" name="number" required>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+        <button type="submit">Checkout</button>
+      </form>`;
+    ShoppingCart.innerHTML = checkoutForm;
+
+    const form = document.getElementById('checkout-form');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); 
+      const name = document.getElementById('name').value;
+      const number=document.getElementById('number').value;
+      const address = document.getElementById('address').value;
+     
+      const productData = JSON.parse(localStorage.getItem('data'));
+      const mergedData = { name, number, address,  productData };
+      fetch('http://localhost:3000/products', {
+        method: 'POST',
+        body: JSON.stringify(mergedData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        // handle success
+        alert("your order success");
+        document.getElementById('name').value="";
+        document.getElementById('number').value="";
+        document.getElementById('address').value="";
+       
+        clearCart();
+      })
+      .catch(error => {
+        // handle error
+        console.log(error,"error");
+      });
     });
-  } else {
+  }else {
     // User is not logged in, redirect to login page
     alert("Befor checkout login to your account")
     window.location.href = 'Account.html';
   }
-  
- 
-  
-    //clearCart();
 };
+
+
 
 
 
