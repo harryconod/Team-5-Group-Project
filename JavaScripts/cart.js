@@ -214,6 +214,8 @@ const checkOut = () => {
       const address = document.getElementById('address').value;
      
       const productData = JSON.parse(localStorage.getItem('data'));
+      console.log(localStorage.getItem('email'));
+      const useremail = localStorage.getItem('email');
      console.log(productData.name);
 
      let cartData = [];
@@ -247,8 +249,13 @@ const checkOut = () => {
           
       
         }).join('');
-        
-      const mergedData = { name, number, address,   cartData };
+        const today = new Date();
+        const formattedDate = today.toLocaleDateString('en-GB', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+      const mergedData = { name, number, address,email: useremail, cartData,date:formattedDate };
       fetch('http://localhost:3000/products', {
         method: 'POST',
         body: JSON.stringify(mergedData),
@@ -259,9 +266,10 @@ const checkOut = () => {
       .then(response => response.json())
       .then(data => {
        console.log(data);
+       clearCart();
       })
       .catch(error => {
-        console.log(error,"error")
+        console.log(error,"error") 
       });
     }
 })
@@ -270,13 +278,14 @@ document.getElementById('name').value="";
         document.getElementById('number').value="";
         document.getElementById('address').value="";
        
-        clearCart();
+        
 })
 }else {
   // User is not logged in, redirect to login page
   alert("Befor checkout login to your account")
   window.location.href = 'Account.html';
 }
+
 }
 
 
