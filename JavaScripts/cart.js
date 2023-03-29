@@ -208,13 +208,47 @@ const checkOut = () => {
 
     const form = document.getElementById('checkout-form');
     form.addEventListener('submit', (event) => {
-      event.preventDefault(); 
+      event.preventDefault(); // prevent form submission
       const name = document.getElementById('name').value;
       const number=document.getElementById('number').value;
       const address = document.getElementById('address').value;
      
       const productData = JSON.parse(localStorage.getItem('data'));
-      const mergedData = { name, number, address,  productData };
+     console.log(productData.name);
+
+     let cartData = [];
+  
+  // fetch product data from API
+  fetch('http://localhost:3000/products')
+    .then(response => response.json())
+    .then(data => {
+      // check if there are any products in the cart
+      if (basket.length !== 0) {
+        // update the shopping cart element with product data
+        ShoppingCart.innerHTML = basket.map((x) => {
+          // get the product data for the current item in the cart
+          let { id, item } = x;
+          let search = data.find((x) => x.id === id) || [];
+          let { img, price, name , category} = search;
+          
+          // create a new object with the necessary product data
+          let productData ={
+            productid: id,
+            quantity: item,
+            productname: name,
+            price: price,
+            image: img,
+            category: category
+          };
+          
+          // add the product data to the cartData array
+          cartData.push(productData);
+          
+          
+      
+        }).join('');
+        
+      const mergedData = { name, number, address,   cartData };
       fetch('http://localhost:3000/products', {
         method: 'POST',
         body: JSON.stringify(mergedData),
@@ -234,24 +268,13 @@ const checkOut = () => {
       })
       .catch(error => {
         // handle error
-        console.log(error,"error");
       });
-    });
-  }else {
-    // User is not logged in, redirect to login page
-    alert("Befor checkout login to your account")
-    window.location.href = 'Account.html';
-  }
-};
-
-
-
-
-
-      
-         
-
-
-
-
-
+    }
+})
+})
+}else {
+  // User is not logged in, redirect to login page
+  alert("Befor checkout login to your account")
+  window.location.href = 'Account.html';
+}
+}
