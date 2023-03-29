@@ -258,19 +258,19 @@ const checkOut = () => {
       })
       .then(response => response.json())
       .then(data => {
-        // handle success
-        alert("your order success");
-        document.getElementById('name').value="";
+       console.log(data);
+      })
+      .catch(error => {
+        console.log(error,"error")
+      });
+    }
+})
+alert("your order successful");
+document.getElementById('name').value="";
         document.getElementById('number').value="";
         document.getElementById('address').value="";
        
         clearCart();
-      })
-      .catch(error => {
-        // handle error
-      });
-    }
-})
 })
 }else {
   // User is not logged in, redirect to login page
@@ -278,3 +278,15 @@ const checkOut = () => {
   window.location.href = 'Account.html';
 }
 }
+
+
+
+
+
+      
+         
+
+
+
+
+
