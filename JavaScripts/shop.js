@@ -21,10 +21,9 @@ let generateShop = (data) => {
       return `
         <div id="product-id-${id}" class="item row">
           <div class="">
-            <img class="img-fluid"  src="${img}" alt="">
+          <img class="img-fluid"  src="${img}" alt="" onclick="showImageDetails('${name}', '${desc}', '${category}', '${img}','${price}')">
             <div class="details">
               <h3>${name}</h3>
-              <p>${desc}</p>
               <h6>${category}</h6>
               <h4>${stockMessage}</h4>
               <div class="price-quantity">
@@ -44,6 +43,56 @@ let generateShop = (data) => {
     })
     .join(""));
 };
+
+
+function showImageDetails(name, desc, category, img, price) {
+  console.log(name, price);
+  // Create the modal HTML code
+  let modalHtml = `
+    <div class="modal fade" id="image-modal" tabindex="-1" role="dialog" aria-labelledby="image-modal-label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="image-modal-label">${name}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <img src="${img}" alt="" class="img-fluid">
+              </div>
+              <div class="col-sm-6">
+                <p><strong>Category:</strong> ${category}</p>
+                <p>${desc}</p>
+                <h2>£ ${price} </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Add the modal to the HTML document
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+  // Show the modal
+  document.getElementById('image-modal').classList.add('show');
+  document.getElementById('image-modal').style.display = 'block';
+
+  // Add an event listener to the close button
+  document.querySelector('#image-modal .close').addEventListener('click', () => {
+    // Hide the modal
+    document.getElementById('image-modal').classList.remove('show');
+    document.getElementById('image-modal').style.display = 'none';
+
+    // Remove the modal from the HTML document
+    document.body.removeChild(document.getElementById('image-modal'));
+  });
+}
+
 
 /**
  * Used to increase the selected product item quantity by 1
@@ -143,10 +192,10 @@ function fetchProducts(queryvalue) {
         let stockMessage = product.stock === 0 ? "Out of stock" : `In stock: ${product.stock} `;
         const productHtml = `
           <div id=product-id-${product.id} class="item">
-            <img width="220" src=${product.img} alt="">
+          <img class="img-fluid"  src="${product.img}" alt="" onclick="showImageDetails('${product.name}', '${product.desc}', '${product.category}', '${product.img}','${product.price}')">
             <div class="details">
               <h3>${product.name}</h3>
-              <p>${product.desc}</p>
+              
               <h6>${product.category}</h6>
               <h4>${stockMessage}</h4>
               <div class="price-quantity">
@@ -243,10 +292,10 @@ function displayProducts(products) {
      
         li.innerHTML = `
         <div id=product-id-${product.id} class="item">
-        <img width="220" src=${product.img} alt="">
+        <img class="img-fluid"  src="${product.img}" alt="" onclick="showImageDetails('${product.name}', '${product.desc}', '${product.category}', '${product.img}','${product.price}')">
         <div class="details">
           <h3>${product.name}</h3>
-          <p>${product.desc}</p>
+         
           <h6>${product.category}</h6>
           <h4>${stockMessage}</h4>
           <div class="price-quantity">
