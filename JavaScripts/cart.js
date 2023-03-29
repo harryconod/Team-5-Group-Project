@@ -35,7 +35,6 @@ let generateCartItems = () => {
         .map((x) => {
           let { id, item } = x;
           let search = data.find((x) => x.id === id) || [];
-          console.log(search);
           let { img, price, name } = search;
           return `
         <div class="cart-item">
@@ -192,91 +191,90 @@ let clearCart = () => {
   localStorage.setItem("data", JSON.stringify(basket));
 };
 
-let cart = [
-  { name: "Item 1", quantity: 2, price: 10 },
-  { name: "Item 2", quantity: 1, price: 5 },
-  { name: "Item 3", quantity: 3, price: 18 }
-];
 
-let checkOut = () => {
-  let cartData=[] ;
+// define the checkout function
+const checkOut = () => {
+  // declare an empty array to store cart data
+  const loggedIn = true; // replace with your login check logic
+  
+  if (localStorage.getItem('username')) {
+    // User is logged in, redirect to checkout page
+    //window.location.href = 'newcart.html';
+    let cartData = [];
+  
+  // fetch product data from API
   fetch('http://localhost:3000/products')
-  .then(response => response.json())
-  .then(data => {
-    if (basket.length !== 0) {
-      return (ShoppingCart.innerHTML = basket
-        .map((x) => {
+    .then(response => response.json())
+    .then(data => {
+      // check if there are any products in the cart
+      if (basket.length !== 0) {
+        // update the shopping cart element with product data
+        ShoppingCart.innerHTML = basket.map((x) => {
+          // get the product data for the current item in the cart
           let { id, item } = x;
-          cartData = data.find((x) => x.id === id) || [];
-          console.log(cartData);
-          let { img, price, name } = cartData;
-          return `
-        <div class="cart-item">
-          <img class="img-fluid1" src=${img} alt="" />
-  
-          <div class="details">
+          let search = data.find((x) => x.id === id) || [];
+          let { img, price, name , category} = search;
           
-            <div class="title-price-x">
-              <h4 class="title-price">
-                <p>${name}</p>
-                <p class="cart-item-price">$ ${price}</p>
-              </h4>
-              <i onclick="removeItem(${id})" class="bi bi-x-lg"></i>
-            </div>
-  
-            <div class="cart-buttons">
-              <div class="buttons">
-                <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
-                <div id=${id} class="quantity">${item}</div>
-                <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
-              </div>
-            </div>
-  
-            <h3>$ ${item * price}</h3>
+          // create a new object with the necessary product data
+          let productData ={
+            productid: id,
+            quantity: item,
+            productname: name,
+            price: price,
+            image: img,
+            category: category
+          };
           
-          </div>
-        </div>
-        `;
-        })
-        .join(""));
+          // add the product data to the cartData array
+          cartData.push(productData);
+          
+          // return the HTML for the current item in the cart
+      
+        }).join('');
         
-    } 
-    console.log(cartData)
-  });
-
-  // iterate over each item in the cart and create an object with its details
-/*cart.forEach(item => {
-    let itemData = {
-      name: item.name,
-      quantity: item.quantity,
-      price: item.price
-    };
-    cartData.push(itemData);
-  });
-*/
-  // convert the array to JSON
-  let jsonData = JSON.stringify(cartData);
- console.log(jsonData);
-    // send the JSON data to an API using fetch
-    fetch("http://localhost:3000/cart", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: jsonData
-    })
-    .then(response => {
-      // handle response from API
-      alert("you order successful");
-      clearCart();
-      console.log(response);
-      console.log("Checkout successful");
+        // convert cartData to JSON
+        let jsonData = JSON.stringify(cartData);
+        
+        // send cart data to API
+        fetch("http://localhost:3000/cart", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: jsonData
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.error("Failed to send cart data: ", error);
+        });
+        
+      } else {
+        // if there are no products in the cart, show an error message
+        ShoppingCart.innerHTML = '<p>Your cart is empty!</p>';
+      }
     })
     .catch(error => {
-      // handle error
-      console.error("Checkout failed: ", error);
+      console.error("Failed to fetch product data: ", error);
     });
+  } else {
+    // User is not logged in, redirect to login page
+    alert("Befor checkout login to your account")
+    window.location.href = 'Account.html';
+  }
+  
+ 
+  
+    //clearCart();
 };
+
+
+
+      
+         
+
+
 
 
 
