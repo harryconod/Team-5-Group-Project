@@ -77,10 +77,10 @@ logoutLink.onclick = () => {
 
 accountLink.parentNode.insertBefore(logoutLink, accountLink.nextSibling);
 }
-
+let attempt1 = 3;
 function confirmlogin(event) {
 event.preventDefault();
-let attempt = 3;
+
 const email = document.getElementById('loginemail').value;
 const password = document.getElementById('loginpassword').value;
 if (email=="" || password =="") {
@@ -99,9 +99,11 @@ fetch(`http://localhost:3000/products?email=${email}&password=${password}`)
 
       // Save user's name
       const name = data[0].name;
+      const email = data[0].email;
       console.log(name);
+      console.log(email);
       localStorage.setItem('username', name);
-
+      localStorage.setItem('email', email);
       // Update navbar with user's name and logout link
       const accountLink = document.getElementById('cart-account-link');
       accountLink.textContent = name;
@@ -127,13 +129,17 @@ fetch(`http://localhost:3000/products?email=${email}&password=${password}`)
       window.location.href="newcart.html";
     } else {
       // Email or password is incorrect
-      attempt--;
-      alert(`Incorrect email or password. ${attempt} attempts left.`);
-      if (attempt === 0) {
+      if(attempt1>0){
+        attempt1--;
+        alert(`Incorrect email or password. ${attempt1} attempts left.`);
+      }
+      
+     
+      if (attempt1 <= 0) {
         // Disable login form after three failed attempts
         document.getElementById('loginemail').disabled = true;
         document.getElementById('loginpassword').disabled = true;
-        document.getElementById('btn-submit').disabled = true;
+         //document.getElementById('btn-submit').disabled = true;
         alert('Maximum login attempts reached. Please try again later.');
       }
     }
