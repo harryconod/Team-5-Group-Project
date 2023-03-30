@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/d1c2ea8b80.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="AdminPage.css">
+    <link rel="website icon" type="png" href="Company-logo-2.png">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-navbar bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand nav-item-admin" href="#">Isra<i>Organics</i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active nav-item-admin" aria-current="page" href="Adminpage.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-item-admin" href="Catalog.html">Catalog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-item-admin" href="Orders.html">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled nav-item-admin">Account</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row mt-3 mb-3">
+            <div class="col-12">
+                <h3>Reports</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 d-flex flex-column">
+                <div class="orders-received mb-5" id="ordersReceived">
+                    <ul class="d-flex flex-row header-ul">
+                        <li class="w-50 header-li" >
+                            Orders received
+                        </li>
+                        <li class="w-50 header-li">
+                            Revenue
+                        </li>
+                    </ul>
+                    <ul class="d-flex flex-row header-ul">
+                        <li class="w-50 header-li" id="total-orders">
+                            <span>0</span>
+                        </li>
+                        <li class="w-50 header-li" id="total-revenue">
+                            £<span>0</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="orders-received mb-5" id="ordersReceived">
+                    <ul class="d-flex flex-row header-ul">
+                        <li class="w-50 header-li" >
+                            No.of Customers
+                        </li>
+                       
+                    </ul>
+                    <ul class="d-flex flex-row header-ul">
+                        <li class="w-50 header-li" id="total-users">
+                            <span>0</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="orders-received mb-5" id="ordersReceived">
+                    <ul class="d-flex flex-row header-ul">
+                        <li class="w-50 header-li">
+                            Total Products
+                        </li>
+                        
+                    </ul>
+                    <ul class="d-flex flex-row header-ul">
+                        <li class="w-50 header-li" id="total-products">
+                            <span>0</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-2">
+
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="orders-revenue-div mb-5" id="ordersReceived">
+                    <ul class="d-flex flex-row header-ul orders-revenue-ul">
+                        <li class="w-50 header-li orders-revenue-header">
+                            Completed orders
+                        </li>
+                        <li class="w-50 header-li orders-revenue-info">
+                            <span>0</span>
+                        </li>
+                        
+                    </ul>
+                    <ul class="d-flex flex-row header-ul orders-revenue-ul">
+                        <li class="w-50 header-li orders-revenue-header">
+                            Total Returns
+                        </li>
+                        <li class="w-50 header-li orders-revenue-info">
+                            <span>0</span>
+                        </li>
+                    </ul>
+                    <ul class="d-flex flex-row header-ul orders-revenue-ul">
+                        <li class="w-50 header-li orders-revenue-header">
+                            Gross Profit
+                        </li>
+                        <li class="w-50 header-li orders-revenue-info">
+                            £<span>0</span>
+                        </li>
+                    </ul>
+                    <ul class="d-flex flex-row header-ul">
+                        <li class="w-50 header-li orders-revenue-header">
+                            Net Profit
+                        </li>
+                        <li class="w-50 header-li orders-revenue-info">
+                            £<span>0</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+// fetching total ordered products and total revenue
+const apiUrl = 'http://localhost:3000/products';
+fetch(apiUrl)
+.then(response => response.json())
+.then(data => {
+const totalOrders = data.length;
+document.getElementById('total-orders').textContent = totalOrders;
+let totalprice=0;
+for(let i=0;i<data.length;i++){
+    totalprice +=data[i].price;
+}
+console.log(`${totalprice}`);
+document.getElementById('total-revenue').textContent = `£${totalprice}`;
+
+ })
+
+
+//fetching no of customers
+
+fetch('http://localhost:3000/products')
+.then(response => response.json())
+.then(data => {
+const totalusers = data.length;
+document.getElementById('total-users').textContent = totalusers;
+
+ })
+ .catch(error => console.error(error));
+
+ //Total products in the page
+ fetch('http://localhost:3000/products')
+.then(response => response.json())
+.then(data => {
+const totalproducts = data.length;
+document.getElementById('total-products').textContent = totalproducts;
+
+ })
+ .catch(error => console.error(error));
+    </script>
+</body>
+</html>
