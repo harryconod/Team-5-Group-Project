@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login&   Registration</title>
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="Account.css">
+    <style>
+        .account{
+            list-style: none;
+        }
+        #cart-account-link ,a{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <li class="nav-item account ">
+        <a class="nav-link text-black"  id="cart-account-link" href="Account.html"></a>
+      </li>
+    <div class="container">
+        <form action="#" class="login active">
+            <div class="loginlogo">
+                <img src="Images/Company-logo-1.png"alt="logo" class="logo">
+            </div>
+            <h2 class="title">Login into your account</h2>
+            <div class="form-group">
+                <label for="email"></label>
+                <div class="input-group">
+                <input type="email" id="loginemail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email"  class="email" required>
+                <i class='bx bx-envelope'></i>
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="password"></label>
+                <div class="input-group">
+                <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" id="loginpassword" placeholder="Password" required>
+                <i class='bx bx-lock-alt'></i>
+            </div>
+            <span class="help-text">Atleast 8 characters</span>
+            </div>
+            <button type="submit" onclick="confirmlogin(event)" class="btn-submit">Log in</button>
+            
+            <p>Don't have an account? <button href="#" onclick="switchForm('register',event)" class="reg-button">Create Account</button></p>
+            <a href="#" onclick="switchForm('forgetpswd',event)" >Forget password?</a>
+        </form>
+        <!--Register-->
+        <form action="#" class="register">
+            <div class="loginlogo1">
+                <img src="Images/Company-logo-1.png"alt="logo" class="logo1">
+            </div>
+            <h2 class="title">Register your account</h2>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <div class="input-group">
+                <input type="name" pattern="[A-Za-z]{3,}" id="registername" placeholder="Enter name">
+                <i class='bx bx-user'></i>
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                <input type="email" id="registeremail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"  placeholder="Enter address"  class="email">
+                <i class='bx bx-envelope'></i>
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" id="password" placeholder="Your password">
+                <i class='bx bx-lock-alt'></i>
+            </div>
+            <span class="help-text">Atleast 8 characters</span>
+            </div>
+            <div class="form-group">
+                <label for="confirm-pass">Confirm Password</label>
+                <div class="input-group">
+                <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" id="confirmpassword" placeholder="Enter  password">
+                <i class='bx bx-lock-alt'></i>
+            </div>
+            <span class="help-text">Confirm password must be same with password</span>
+            </div>
+           <button type="submit" onclick="confirmreg()" class="btn-submit">Register</button>
+           <p> Already have an account?</br> <button href="#" onclick="switchForm('login',event)" class="log-button">Login</button></p>
+        </form>
+        <!--Forget-->
+        <form action="#" class="forgetpswd">
+            <h2 class="title">Reset account password</h2>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                <input type="email" id="forgetemail" placeholder="Enter your email id">
+                <i class='bx bx-envelope'></i>
+            </div>
+            </div>
+            <button type="submit" onclick="forgetpswd()" class="btn-submit">submit</button>
+            
+        </form>
+    </div>
+   
+    <script src="login&createaccount.js"></script>
+</body>
+</html>
