@@ -9,9 +9,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.constraints.*;
 
-/**
- * A DTO representing a user, with his authorities.
- */
 public class AdminUserDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,7 +49,7 @@ public class AdminUserDTO implements Serializable {
     private Set<String> authorities;
 
     public AdminUserDTO() {
-        // Empty constructor needed for Jackson.
+
     }
 
     public AdminUserDTO(User user) {
@@ -175,7 +172,6 @@ public class AdminUserDTO implements Serializable {
         this.authorities = authorities;
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "AdminUserDTO{" +
