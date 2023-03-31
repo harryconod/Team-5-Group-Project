@@ -3,9 +3,6 @@ package com.israorganic.site.service.dto;
 import com.israorganic.site.domain.User;
 import java.io.Serializable;
 
-/**
- * A DTO representing a user, with only the public attributes.
- */
 public class UserDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -15,7 +12,7 @@ public class UserDTO implements Serializable {
     private String login;
 
     public UserDTO() {
-        // Empty constructor needed for Jackson.
+
     }
 
     public UserDTO(User user) {
@@ -40,7 +37,6 @@ public class UserDTO implements Serializable {
         this.login = login;
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "UserDTO{" +
