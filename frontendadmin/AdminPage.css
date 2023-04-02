@@ -1,0 +1,44 @@
+.bg-navbar {
+    background-color: black !important; 
+}
+
+.nav-item-admin {
+    color: white !important;
+}
+
+.header-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.orders-received {
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.header-li {
+    text-align: center;
+    padding: 5px;
+}
+
+.orders-revenue-header {
+    text-align: left;
+}
+
+.orders-revenue-info {
+    text-align: right;
+}
+
+.orders-revenue-div {
+    background-color: black;
+    color: white;
+    border-radius: 40px;
+    padding: 40px;
+}
+
+.orders-revenue-ul {
+    margin-bottom: 70px;
+}

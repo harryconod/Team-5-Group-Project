@@ -334,7 +334,7 @@ function filterProducts(products, category, priceRange) {
         return false;
       }
     }
-
+    
     return true;
   });
 }

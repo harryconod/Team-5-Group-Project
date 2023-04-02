@@ -1,0 +1,81 @@
+.bg-navbar {
+    background-color: black !important; 
+}
+
+.nav-item-admin {
+    color: white !important;
+}
+
+.button-anp {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+.checked {
+    text-decoration: line-through;
+}
+
+.checkbox-input {
+    width: 20px;
+    height: 20px;
+    margin-top: 120px;
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+.product-items-container {
+    margin: 0px;
+    padding: 0px;    
+}
+
+.label-container {
+    width: 100%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #096f92;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 4px;
+}
+
+.checkbox-label {
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 400;
+    width: 82%;
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+}
+
+.price-label {
+    margin-top: 120px;
+}
+
+.delete-icon-container {
+    text-align: right;
+    width: 18%;
+}
+
+.delete-icon {
+    margin-top: 120px;
+    padding: 15px;
+}
+
+.todo-items-container {
+    margin: 0px;
+    padding: 0px;
+}
+
+.todo-item-container {
+    margin-top: 15px;
+}
+
+.product-image {
+    height: 40px !important;
+    width: 40px !important;
+}
