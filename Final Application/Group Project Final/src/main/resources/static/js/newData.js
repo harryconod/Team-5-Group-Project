@@ -1,0 +1,51 @@
+let shopItemsData =[
+    {
+        id: "divya7",
+        name:"shampoo Bar",
+        price: 10,
+        desc: "shampoo bar shampoo bar shampoo bar shampoo bar shampoo bar",
+        img:"Shampoo.png",
+    },
+    {
+        id: "divya6",
+        name:"Shampoo Bar",
+        price: 15,
+        desc: "shampoo bar shampoo bar shampoo bar shampoo bar shampoo bar",
+        img:"Shampoo.png",
+    },
+    {
+        id: "divya1",
+        name:"Serum",
+        price: 13,
+        desc: "shampoo bar shampoo bar shampoo bar shampoo bar shampoo bar",
+        img:"Protecting-serum-bs.png",
+    },
+    {
+        id: "divya2",
+        name:"Moisturizer",
+        price: 25,
+        desc: "shampoo bar shampoo bar shampoo bar shampoo bar shampoo bar",
+        img:"Moisturizers-c.png",
+    },
+    {
+        id: "divya3",
+        name:"Moisturizing Cream",
+        price: 55,
+        desc: "shampoo bar shampoo bar shampoo bar shampoo bar shampoo bar",
+        img:"Moisturizing-cream-bs.png",
+    },
+    {
+        id: "divya4",
+        name:"Oil",
+        price: 35,
+        desc: "shampoo bar shampoo bar shampoo bar shampoo bar shampoo bar",
+        img:"product-image.png",
+    },
+    {
+        id: "divya5",
+        name:"Shampoo Bar",
+        price: 95,
+        desc: "shampoo bar shampoo bar shampoo bar shampoo bar shampoo bar",
+        img:"Shampoo.png",
+    },
+];
